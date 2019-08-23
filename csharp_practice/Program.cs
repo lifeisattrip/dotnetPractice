@@ -1,34 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace csharp_practice
 {
-    class Program
+    internal class Program
     {
         private int Test1;
         private string Test2;
         public int Prop1 { get; set; }
-        
+
+        public int Calculate => Prop1 + 111110;
+
 
         private static void TestLinq()
         {
-            var arr = new List<int> { 1, 2, 4, 5, 6 };
-            
+            var arr = new List<int> {1, 2, 4, 5, 6};
+
             var linq =
                 from item in arr
                 where item > 5
                 select item;
             var list = linq.ToList();
 
-            foreach (int item in list.ToArray())
-            {
-                Console.WriteLine(item);
-            }
+            foreach (var item in list.ToArray()) Console.WriteLine(item);
+
             Console.WriteLine("TestLinq End");
         }
 
@@ -41,11 +39,9 @@ namespace csharp_practice
             db.AddRange(stu);
             db.SaveChanges();
             var items = db.Students.ToList();
-            Console.WriteLine("TestEf student count {0}",items.Count());
-            foreach (var item in items)
-            {
-                Console.WriteLine(item.StudentName);
-            }
+            Console.WriteLine("TestEf student count {0}", items.Count());
+            foreach (var item in items) Console.WriteLine(item.StudentName);
+
             Console.WriteLine("TestEF End");
         }
 
@@ -56,62 +52,48 @@ namespace csharp_practice
 
         private static void TestDateTime()
         {
-            DateTime today = DateTime.Now;
-            DateTime answer = today.AddDays(36);
+            var today = DateTime.Now;
+            var answer = today.AddDays(36);
             Console.WriteLine("Today: {0:dddd}", today);
             Console.WriteLine("36 days from today: {0:dddd}", answer);
 
 
-            DateTime dt = DateTime.Now;
-           Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
+            var dt = DateTime.Now;
+            Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
 
-           var endTime = dt.AddDays(10);
-           Console.WriteLine(endTime.ToString("yyyy-MM-dd HH:mm:ss"));
-            for (DateTime start = dt; start <= endTime; start = start.AddDays(1))
-           {
-               Console.WriteLine(start.ToString("yyyy-MM-dd HH:mm:ss"));
-           }
+            var endTime = dt.AddDays(10);
+            Console.WriteLine(endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            for (var start = dt; start <= endTime; start = start.AddDays(1))
+                Console.WriteLine(start.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 
         private static void TestFile()
         {
-            DirectoryInfo di = new DirectoryInfo(@"C:\Users\kevin\Documents\weeplusFiles\15996355802@xw\receive file");
-            FileInfo[] fileInfos = di.GetFiles();
-            foreach (var fileInfo in fileInfos)
-            {
-                Console.WriteLine(fileInfo.Name);
-            }
+            var di = new DirectoryInfo(@"C:\Users\kevin\Documents\weeplusFiles\15996355802@xw\receive file");
+            var fileInfos = di.GetFiles();
+            foreach (var fileInfo in fileInfos) Console.WriteLine(fileInfo.Name);
         }
-        [MyAttribute("ddddscription","version 111")]
+
+        [My("ddddscription", "version 111")]
         private void TestType()
         {
-            Type type = this.GetType();
+            var type = GetType();
             Console.WriteLine("{0}  {1}  {2}", type.Name, type.FullName, "123");
 
-            FieldInfo[] fieldInfos = type.GetFields();
+            var fieldInfos = type.GetFields();
             Console.WriteLine("Fileinfo size {0}", fieldInfos.Length);
-            foreach (var fieldInfo in fieldInfos)
-            {
-                Console.WriteLine(fieldInfo.Name);
-            }
+            foreach (var fieldInfo in fieldInfos) Console.WriteLine(fieldInfo.Name);
 
-            object[] customAttributes = type.GetCustomAttributes(true);
+            var customAttributes = type.GetCustomAttributes(true);
 
-            foreach (var customAttribute in customAttributes)
-            {
-                Console.WriteLine(customAttribute.ToString());
-            }
+            foreach (var customAttribute in customAttributes) Console.WriteLine(customAttribute.ToString());
         }
 
         private void TestAttribute([CallerFilePath] string filename = "")
         {
-            Console.WriteLine("Filename {0}",filename);
+            Console.WriteLine("Filename {0}", filename);
         }
 
-        public int Calculate
-        {
-            get { return Prop1 + 111110; }
-        }
         private void TestProp()
         {
             Prop1 = 123;
@@ -119,15 +101,85 @@ namespace csharp_practice
             Console.WriteLine(Calculate);
         }
 
-        
+
         private void TestIndex()
         {
-
         }
-        static void Main(string[] args)
+
+        private static void PrintObj(object item)
         {
-            Program program = new Program();
-            program.TestProp();
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(item.GetType());
+            Console.WriteLine(item);
+        }
+
+
+        private void TestTuple()
+        {
+            var t1 = (1, 2, 34, 5, "123", 15.6f);
+            (int, int, int) t2 = (1, 2, 34);
+
+            var named = (name: "kevin", age: 123);
+
+            PrintObj(t1);
+            PrintObj(named);
+            PrintObj(named.age);
+            PrintObj(t1.Item6);
+            PrintObj(t2);
+        }
+
+        private void TestUnnameType()
+        {
+            var v = new {Name = "Kevin", Age = 123};
+
+            PrintObj(v);
+            PrintObj(v.Name);
+        }
+
+        private void TestEssentialCSharp()
+        {
+            System.Console.WriteLine($"0x{42:x}");
+            int firstName = 471654;
+            string lastName = "toqi";
+
+            System.Console.WriteLine($@"Your full name is:
+{firstName} {lastName}");
+            //有位有@符号 所以才能被解析 因为左大括号 换行了
+            System.Console.WriteLine($@"Your full name is: {
+                firstName} {lastName}");
+
+            double outPut = 0;
+            bool result = double.TryParse("1x0", out outPut);
+
+            (string country, string capital, double gdpPerCapita) = ("Malawi", "Lilongwe", 226.50);
+
+            PrintObj(outPut);
+            PrintObj(result);
+
+            PrintObj(country);
+            PrintObj(gdpPerCapita);
+        }
+
+        private static void Main(string[] args)
+        {
+            var program = new Program();
+            program.TestEssentialCSharp();
+
+            var fileTest = new FileTest();
+            var browserAllFiles =
+                fileTest.BrowserAllFiles(@"C:\develop\develop_tool\IntelliJ IDEA 2019.2\license");
+
+            PrintObj(browserAllFiles.Count);
+            var query = browserAllFiles.GroupBy(file => file.Extension);
+            
+            foreach (var fileInfo in query.ToList())
+            {
+                PrintObj(fileInfo.Key);
+                foreach (var info in fileInfo)
+                {
+                    PrintObj(info);
+                }
+            }
         }
     }
 }
