@@ -167,9 +167,8 @@ namespace csharp_practice
             program.TestEssentialCSharp();
 
             var fileTest = new FileTest();
-            var browserAllFiles =
-                fileTest.BrowserAllFiles(@"C:\develop\develop_tool\IntelliJ IDEA 2019.2\license");
-            fileTest.FileInfoParser(browserAllFiles);
+            //var browserAllFiles = fileTest.BrowserAllFiles(@"C:\develop\develop_tool\IntelliJ IDEA 2019.2\license");
+            //fileTest.FileInfoParser(browserAllFiles);
 
             EfTester efTester = new EfTester();
             efTester.TestSelect();

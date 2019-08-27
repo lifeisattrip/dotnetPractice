@@ -8,8 +8,10 @@ namespace csharp_practice.EFTest
         [Key]
         public int Id { get; set; }
         [Required]
+        [MaxLength(32)]
         public string ConfigSection { get; set; }
         [Required]
+        [MaxLength(32)]
         public string ConfigKey { get; set; }
         [Required]
         public string ConfigValue { get; set; }
