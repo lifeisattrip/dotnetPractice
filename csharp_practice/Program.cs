@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using csharp_practice.EFTest;
 
 namespace csharp_practice
 {
@@ -32,15 +33,15 @@ namespace csharp_practice
 
         private static void TestEf()
         {
-            var db = new MyDbContext();
-            var stu = new Student();
-            stu.StudentName = "name";
-            stu.Remark = "remark";
+            var db = new AppDbContext();
+            var stu = new SysUser();
+            stu.UserName = "name";
+            stu.Address = "remark";
             db.AddRange(stu);
             db.SaveChanges();
-            var items = db.Students.ToList();
+            var items = db.SysUsers.ToList();
             Console.WriteLine("TestEf student count {0}", items.Count());
-            foreach (var item in items) Console.WriteLine(item.StudentName);
+            foreach (var item in items) Console.WriteLine(item.UserName);
 
             Console.WriteLine("TestEF End");
         }
@@ -168,18 +169,10 @@ namespace csharp_practice
             var fileTest = new FileTest();
             var browserAllFiles =
                 fileTest.BrowserAllFiles(@"C:\develop\develop_tool\IntelliJ IDEA 2019.2\license");
+            fileTest.FileInfoParser(browserAllFiles);
 
-            PrintObj(browserAllFiles.Count);
-            var query = browserAllFiles.GroupBy(file => file.Extension);
-            
-            foreach (var fileInfo in query.ToList())
-            {
-                PrintObj(fileInfo.Key);
-                foreach (var info in fileInfo)
-                {
-                    PrintObj(info);
-                }
-            }
+            EfTester efTester = new EfTester();
+            efTester.TestSelect();
         }
     }
 }
