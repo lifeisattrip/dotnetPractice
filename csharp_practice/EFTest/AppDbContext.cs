@@ -22,5 +22,11 @@ namespace csharp_practice.EFTest
                 "server=172.16.0.183;userid=root;pwd=xianwei;port=3306;database=testef;charset=utf8;sslmode=None"
             );
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<SysConfig>()
+            .HasIndex(p => new { p.ConfigSection, p.ConfigKey })
+            .IsUnique(true);
+    }
     }
 }
