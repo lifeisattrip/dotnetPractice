@@ -30,22 +30,6 @@ namespace csharp_practice
 
             Console.WriteLine("TestLinq End");
         }
-
-        private static void TestEf()
-        {
-            var db = new AppDbContext();
-            var stu = new SysUser();
-            stu.UserName = "name";
-            stu.Address = "remark";
-            db.AddRange(stu);
-            db.SaveChanges();
-            var items = db.SysUsers.ToList();
-            Console.WriteLine("TestEf student count {0}", items.Count());
-            foreach (var item in items) Console.WriteLine(item.UserName);
-
-            Console.WriteLine("TestEF End");
-        }
-
         private static void TestString()
         {
             Console.WriteLine("{0} {1}", 123, 345);

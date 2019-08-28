@@ -9,6 +9,22 @@ namespace csharp_practice.EFTest
 {
     class EfTester : TestBase
     {
+
+        private static void TestSimpleInsert()
+        {
+            var db = new AppDbContext();
+            var stu = new SysUser();
+            stu.UserName = "name";
+            stu.Address = "remark";
+            db.AddRange(stu);
+            db.SaveChanges();
+            var items = db.SysUsers.ToList();
+            Console.WriteLine("TestEf student count {0}", items.Count());
+            foreach (var item in items) Console.WriteLine(item.UserName);
+
+            Console.WriteLine("TestEF End");
+        }
+
         public void TestSelect()
         {
             using var db = new AppDbContext();
