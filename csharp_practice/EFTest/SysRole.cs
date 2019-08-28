@@ -8,6 +8,6 @@ namespace csharp_practice.EFTest
         public int Id { get; set; }
         public string RoleName { get; set; }
         public DateTime GmtCreate { get; set; }
-        public List<SysRoleResource> RoleResource { get; set; }
+        public List<SysRoleRes> RoleResource { get; set; }
     }
 }

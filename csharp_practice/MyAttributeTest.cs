@@ -4,9 +4,9 @@ using System.Text;
 
 namespace csharp_practice
 {
-    public sealed class MyAttribute: System.Attribute
+    public sealed class MyAttributeTest: System.Attribute
     {
-        public MyAttribute(string desc, string ver)
+        public MyAttributeTest(string desc, string ver)
         {
             Description = desc;
             Version = ver;

@@ -24,7 +24,7 @@ namespace csharp_practice.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SysResources",
+                name: "SysRes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -34,7 +34,7 @@ namespace csharp_practice.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SysResources", x => x.Id);
+                    table.PrimaryKey("PK_SysRes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,7 +70,7 @@ namespace csharp_practice.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SysRoleResource",
+                name: "SysRoleRes",
                 columns: table => new
                 {
                     RoleId = table.Column<int>(nullable: false),
@@ -78,15 +78,15 @@ namespace csharp_practice.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SysRoleResource", x => new { x.ResourceId, x.RoleId });
+                    table.PrimaryKey("PK_SysRoleRes", x => new { x.ResourceId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_SysRoleResource_SysResources_ResourceId",
+                        name: "FK_SysRoleRes_SysRes_ResourceId",
                         column: x => x.ResourceId,
-                        principalTable: "SysResources",
+                        principalTable: "SysRes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SysRoleResource_SysRoles_RoleId",
+                        name: "FK_SysRoleRes_SysRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "SysRoles",
                         principalColumn: "Id",
@@ -100,8 +100,8 @@ namespace csharp_practice.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_SysRoleResource_RoleId",
-                table: "SysRoleResource",
+                name: "IX_SysRoleRes_RoleId",
+                table: "SysRoleRes",
                 column: "RoleId");
         }
 
@@ -111,13 +111,13 @@ namespace csharp_practice.Migrations
                 name: "SysConfigs");
 
             migrationBuilder.DropTable(
-                name: "SysRoleResource");
+                name: "SysRoleRes");
 
             migrationBuilder.DropTable(
                 name: "SysUsers");
 
             migrationBuilder.DropTable(
-                name: "SysResources");
+                name: "SysRes");
 
             migrationBuilder.DropTable(
                 name: "SysRoles");

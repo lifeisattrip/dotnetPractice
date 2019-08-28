@@ -75,7 +75,7 @@ namespace csharp_practice
             foreach (var fileInfo in fileInfos) Console.WriteLine(fileInfo.Name);
         }
 
-        [My("ddddscription", "version 111")]
+        [MyAttributeTest("ddddscription", "version 111")]
         private void TestType()
         {
             var type = GetType();
@@ -171,7 +171,11 @@ namespace csharp_practice
             //fileTest.FileInfoParser(browserAllFiles);
 
             EfTester efTester = new EfTester();
-            efTester.TestSelect();
+//            efTester.TestSelect();
+
+            efTester.AddTestData();
+
+            efTester.TestM2MSelect();
         }
     }
 }
