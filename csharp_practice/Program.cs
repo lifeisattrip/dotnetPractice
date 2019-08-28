@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using csharp_practice.EFTest;
+using csharp_practice.Tester;
 
 namespace csharp_practice
 {
@@ -154,6 +155,9 @@ namespace csharp_practice
 
             EfTester efTester = new EfTester();
             efTester.TestThisFeature();
+
+            var serilogTest = new SerilogTest();
+            serilogTest.TestThisFeature();
         }
     }
 }
