@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace csharp_practice.EFTest
 {
@@ -19,6 +20,18 @@ namespace csharp_practice.EFTest
         {
             using var appDbContext = new AppDbContext();
 
+            var sysUsers = new List<SysUser>();
+            for (int i = 0; i < 25; i++)
+            {
+                var sysUser = new SysUser();
+                sysUser.UserName = $"username-{i}";
+                sysUser.Account = $"Account-{i}";
+                sysUser.Password = $"Password-{i}";
+                sysUser.GmtCreate = DateTime.Now;
+                sysUsers.Add(sysUser);
+            }
+
+            appDbContext.SysUsers.AddRange(sysUsers);
 
             var sysReses = new List<SysRes>();
             for (int i = 0; i < 5; i++)
@@ -62,8 +75,27 @@ namespace csharp_practice.EFTest
         {
             using var appDbContext = new AppDbContext();
 
-            var sysRole = appDbContext.SysRoles.Include(r => r.RoleResource).ThenInclude(r=>r.Res).First(u => u.Id == 1);
+            var sysRole = appDbContext.SysRoles.Include(r => r.RoleResource).ThenInclude(r => r.Res).First(u => u.Id == 1);
             PrintObj(sysRole.RoleResource.Count);
+        }
+
+        public void TestPage()
+        {
+            using var appDbContext = new AppDbContext();
+
+            PagedResult<SysUser> pagedResult = appDbContext.SysUsers.OrderByDescending(u=>u.Id).GetPaged(1, 10);
+            foreach (var pagedResultResult in pagedResult.Results)
+            {
+                PrintObj(pagedResultResult);
+            }
+        }
+
+        public override void TestThisFeature()
+        {
+//            TestSelect();
+//            AddTestData();
+//            TestM2MSelect();
+            TestPage();
         }
     }
 }

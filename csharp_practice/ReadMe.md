@@ -7,5 +7,7 @@ modelBuilder.Entity<Person>().HasIndex(p => new { p.FirstName, p.LastName }).IsU
 
 m-m
 https://docs.microsoft.com/zh-cn/ef/core/modeling/relationships
+page
+https://www.codingame.com/playgrounds/5363/paging-with-entity-framework-core
 
 

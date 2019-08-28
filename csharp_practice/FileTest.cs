@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace csharp_practice
 {
-    public class FileTest  : TestBase
+    public class FileTest : TestBase
     {
         public void FileInfoParser(List<FileInfo> files)
         {
@@ -15,7 +15,7 @@ namespace csharp_practice
             files.Sort((a, b) =>
             {
                 var o = b.Length - a.Length;
-                return (int)o;
+                return (int) o;
             });
             foreach (var fileInfo in query.ToList())
             {
@@ -28,6 +28,7 @@ namespace csharp_practice
                 }
             }
         }
+
         public List<FileInfo> BrowserAllFiles(string folderPath)
         {
             var fileInfos = new List<FileInfo>();
@@ -52,6 +53,12 @@ namespace csharp_practice
             }
 
             return fileInfos;
+        }
+
+        public override void TestThisFeature()
+        {
+            var browserAllFiles = BrowserAllFiles(@"C:\develop\develop_tool\IntelliJ IDEA 2019.2\license");
+            FileInfoParser(browserAllFiles);
         }
     }
 }
