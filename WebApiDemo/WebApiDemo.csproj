@@ -1,10 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\csharp_practice\csharp_practice.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common" />
     </ItemGroup>
 
 </Project>

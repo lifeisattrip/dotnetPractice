@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace csharp_practice.EFTest
 {
-    class EfTester : TestBase
+    public class EfTester : TestBase
     {
 
         private static void TestSimpleInsert()
