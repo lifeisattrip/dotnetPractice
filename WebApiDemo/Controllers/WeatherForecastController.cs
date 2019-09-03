@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using csharp_practice.EFTest;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApiDemo.Auth;
 
 namespace WebApiDemo.MVC
 {
