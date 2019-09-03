@@ -29,7 +29,7 @@ namespace WebApiDemo.MVC
                 ExceptionMessage += " from home page";
             }
 
-            return new {code = -1, msg = exceptionHandlerPathFeature.Error.Message};
+            return new {code = -1, msg = exceptionHandlerPathFeature.Error.Message + exceptionHandlerPathFeature.Path};
         }
     }
 }
