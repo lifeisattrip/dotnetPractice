@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using csharp_practice.EFTest;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApiDemo.MVC;
@@ -11,11 +13,31 @@ namespace WebAppDemo.Controllers
     {
         private readonly ILogger<TestController> _logger;
         private readonly AppDbContext _context;
+        private UserManager<IdentityUser> _userManager;
+        private SignInManager<IdentityUser> _signInManager;
 
-        public HomeController(ILogger<TestController> logger, AppDbContext context)
+        public HomeController(ILogger<TestController> logger, AppDbContext context,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+        [HttpPost]
+        public async Task<object> Login([FromBody] LoginDto model)
+        {
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+
+            if (result.Succeeded)
+            {
+                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+                return appUser;
+            }
+
+            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
         }
 
         PagedResult<SysUser> TestSortPageData()
@@ -29,5 +51,11 @@ namespace WebAppDemo.Controllers
         {
             return TestSortPageData();
         }
+    }
+
+    public class LoginDto
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

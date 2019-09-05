@@ -6,6 +6,11 @@
 script-migration
 update-database
 
+### 非PM环境下命令
+dotnet ef migrations add 
+dotnet ef database update
+
+
 ### 多表关联配置
 
 unique constrains on multiple columns

@@ -9,7 +9,6 @@ namespace csharp_practice.EFTest
 {
     public class EfTester : TestBase
     {
-
         private static void TestSimpleInsert()
         {
             var db = new AppDbContext();
@@ -99,7 +98,7 @@ namespace csharp_practice.EFTest
         {
             using var appDbContext = new AppDbContext();
 
-            PagedResult<SysUser> pagedResult = appDbContext.SysUsers.OrderByDescending(u=>u.Id).GetPaged(1, 10);
+            PagedResult<SysUser> pagedResult = appDbContext.SysUsers.OrderByDescending(u => u.Id).GetPaged(1, 10);
             foreach (var pagedResultResult in pagedResult.Results)
             {
                 PrintObj(pagedResultResult);
@@ -109,8 +108,8 @@ namespace csharp_practice.EFTest
         public override void TestThisFeature()
         {
 //            TestSelect();
-//            AddTestData();
-//            TestM2MSelect();
+            AddTestData();
+            TestM2MSelect();
             TestPage();
         }
     }
