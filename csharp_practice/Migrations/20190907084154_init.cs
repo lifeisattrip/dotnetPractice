@@ -14,7 +14,8 @@ namespace csharp_practice.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -39,7 +40,9 @@ namespace csharp_practice.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FullName = table.Column<string>(nullable: true),
+                    BirthDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

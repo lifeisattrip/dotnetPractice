@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebApiDemo.Auth;
 
 namespace WebAppDemo
 {
@@ -39,10 +40,18 @@ namespace WebAppDemo
                     opt.UseSqlite(@"Data Source=E:\CSharpTestDB.sqlite")
 //                opt.UseMySQL(Configuration.GetConnectionString("Database"))
             );
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<MyIdentityUser>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(
+                options =>
+                {
+//                    options.MaxModelValidationErrors = 50;
+//                    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+//                        (_) => "该项内容不能为空！"
+//                    );
+                }
+            ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

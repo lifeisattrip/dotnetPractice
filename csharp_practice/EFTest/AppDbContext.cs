@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
+using WebApiDemo.Auth;
 
 namespace csharp_practice.EFTest
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<MyIdentityUser,MyIdentityRole,string>
     {
         public DbSet<SysConfig> SysConfigs { get; set; }
         public DbSet<SysUser> SysUsers { get; set; }
