@@ -5,6 +5,7 @@ using csharp_practice.EFTest;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApiDemo.Auth;
 using WebApiDemo.MVC;
 
 namespace WebAppDemo.Controllers
@@ -13,12 +14,12 @@ namespace WebAppDemo.Controllers
     {
         private readonly ILogger<TestController> _logger;
         private readonly AppDbContext _context;
-        private UserManager<IdentityUser> _userManager;
-        private SignInManager<IdentityUser> _signInManager;
+        private UserManager<MyIdentityUser> _userManager;
+        private SignInManager<MyIdentityUser> _signInManager;
 
         public HomeController(ILogger<TestController> logger, AppDbContext context,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<MyIdentityUser> userManager,
+            SignInManager<MyIdentityUser> signInManager)
         {
             _logger = logger;
             _context = context;
