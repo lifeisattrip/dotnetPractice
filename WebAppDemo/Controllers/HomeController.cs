@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using csharp_practice.EFTest;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,6 +19,7 @@ namespace WebAppDemo.Controllers
         private readonly AppDbContext _context;
         private UserManager<MyIdentityUser> _userManager;
         private SignInManager<MyIdentityUser> _signInManager;
+        private readonly HttpContext _httpContext;
 
         public HomeController(ILogger<TestController> logger, AppDbContext context,
             UserManager<MyIdentityUser> userManager,
@@ -30,15 +34,24 @@ namespace WebAppDemo.Controllers
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDto model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
             if (result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+                var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(MyClaimTypes.Permission, "CanReadResource")
+                };
+                var appIdentity = new ClaimsIdentity(claims);
+
+                HttpContext.User.AddIdentity(appIdentity);
                 return appUser;
             }
+            // throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
 
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            return new { code=500,msg="not auth"};
         }
 
         PagedResult<SysUser> TestSortPageData()
@@ -58,7 +71,7 @@ namespace WebAppDemo.Controllers
 
     public class LoginDto
     {
-        public string Email { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
     }
 }

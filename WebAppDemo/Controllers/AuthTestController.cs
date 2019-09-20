@@ -1,4 +1,5 @@
-﻿using csharp_practice.EFTest;
+﻿using System;
+using csharp_practice.EFTest;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,10 +28,18 @@ namespace WebApiDemo.Controllers
 
         [ClaimRequirement(MyClaimTypes.Permission, "CanReadResource")]
         [HttpGet]
-        public IActionResult GetResource()
+        public Object GetResource()
         {
-            return Ok();
+            return new {auth=true,result="success"};
         }
+
+        [ClaimRequirement(MyClaimTypes.Permission, "CanReadResource1")]
+        [HttpGet]
+        public Object GetResource1()
+        {
+            return new {auth=true,result="success"};
+        }
+
 
         [HttpPost]
         public IActionResult Register([FromBody] RegisterViewModel registerObj)
