@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using csharp_practice.EFTest;
+using csharp_practice.Grammar;
 using csharp_practice.Tester;
 
 namespace csharp_practice
@@ -148,16 +149,19 @@ namespace csharp_practice
 
         private static void Main(string[] args)
         {
-            var program = new Program();
-            program.TestEssentialCSharp();
+//            var program = new Program();
+//            program.TestEssentialCSharp();
+//
+//            var fileTest = new FileTest();
+//
+//            EfTester efTester = new EfTester();
+//            efTester.TestThisFeature();
+//
+//            var serilogTest = new SerilogTest();
+//            serilogTest.TestThisFeature();
 
-            var fileTest = new FileTest();
-
-            EfTester efTester = new EfTester();
-            efTester.TestThisFeature();
-
-            var serilogTest = new SerilogTest();
-            serilogTest.TestThisFeature();
+            var normalGrammar = new NormalGrammar();
+            normalGrammar.TestThisFeature();
         }
     }
 }
