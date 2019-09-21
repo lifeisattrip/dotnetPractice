@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using csharp_practice.EFTest;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -39,19 +41,15 @@ namespace WebAppDemo.Controllers
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
+                var identity = new ClaimsIdentity(IdentityConstants.ApplicationScheme);
+                identity.AddClaim(new Claim(MyClaimTypes.Permission, "CanReadResource"));
+                await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme, new ClaimsPrincipal(identity));
 
-                var claims = new List<Claim>
-                {
-                    new Claim(MyClaimTypes.Permission, "CanReadResource")
-                };
-                var appIdentity = new ClaimsIdentity(claims);
-
-                HttpContext.User.AddIdentity(appIdentity);
                 return appUser;
             }
             // throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
 
-            return new { code=500,msg="not auth"};
+            return new {code = 500, msg = "not auth"};
         }
 
         PagedResult<SysUser> TestSortPageData()
@@ -65,8 +63,6 @@ namespace WebAppDemo.Controllers
         {
             return TestSortPageData();
         }
-
-
     }
 
     public class LoginDto

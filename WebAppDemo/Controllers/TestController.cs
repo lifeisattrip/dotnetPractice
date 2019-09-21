@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace WebApiDemo.MVC
 {
     // 会覆盖上层路由  ApiBaseController里面的
-    [Route("api/v1/[controller]/[action]")]
+    [Route("/[controller]/[action]")]
     public class TestController : ApiBaseController
     {
         private readonly ILogger<TestController> _logger;
@@ -36,6 +36,12 @@ namespace WebApiDemo.MVC
             PagedResult<SysUser> pagedResult = _context.SysUsers.OrderByDescending(u => u.Id).GetPaged(2, 10);
 
             return new {Page = pagedResult, Param = id};
+        }
+
+        [HttpGet]
+        public Object ErrorCode(int code)
+        {
+            return new {Msg = "Error", Code = code};
         }
 
         [HttpGet]

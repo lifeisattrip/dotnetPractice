@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using csharp_practice.EFTest;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,8 @@ namespace WebAppDemo
                     opt.UseSqlite(@"Data Source=E:\CSharpTestDB.sqlite")
 //                opt.UseMySQL(Configuration.GetConnectionString("Database"))
             );
+
+
             services.AddDefaultIdentity<MyIdentityUser>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
@@ -52,6 +55,13 @@ namespace WebAppDemo
 //                    );
                 }
             ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Test/ErrorCode";
+                options.LogoutPath = $"/Test/ErrorCode";
+                options.AccessDeniedPath = $"/Test/ErrorCode";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +95,7 @@ namespace WebAppDemo
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
