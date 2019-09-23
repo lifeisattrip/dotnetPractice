@@ -38,7 +38,7 @@ namespace WebAppDemo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDbContext<AppDbContext>(opt =>
-                    opt.UseSqlite(@"Data Source=E:\CSharpTestDB.sqlite")
+                    opt.UseSqlite(Configuration.GetConnectionString("SQLite"))
 //                opt.UseMySQL(Configuration.GetConnectionString("Database"))
             );
 
