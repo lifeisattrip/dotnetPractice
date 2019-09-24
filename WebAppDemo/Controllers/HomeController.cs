@@ -52,9 +52,9 @@ namespace WebAppDemo.Controllers
             return new {code = 500, msg = "not auth"};
         }
 
-        PagedResult<SysUser> TestSortPageData()
+        PagedResult<SysRes> TestSortPageData()
         {
-            PagedResult<SysUser> pagedResult = _context.SysUsers.OrderByDescending(u => u.Id).GetPaged(1, 10);
+            PagedResult<SysRes> pagedResult = _context.SysRes.OrderByDescending(u => u.Id).GetPaged(1, 10);
             return pagedResult;
         }
 

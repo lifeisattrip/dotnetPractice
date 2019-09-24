@@ -20,11 +20,36 @@ namespace RazorPagesMovie.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<AppDbContext>>()))
             {
-                //  context.Database.EnsureCreated();
-                //  you can use
-                //  the DbContext.Database.Migrate() method to ensure the database is created and
-                //  all migrations 
-                context.Database.Migrate();
+                    //  context.Database.EnsureCreated();
+                    //  you can use
+                    //  the DbContext.Database.Migrate() method to ensure the database is created and
+                    //  all migrations 
+
+                    if (context.SysRes.Any())
+                    {
+                        return;
+                    }
+                    context.SysRes.AddRange(
+                        new SysRes
+                        {
+                            Id=1,
+                            ResName="resName1",
+                            GmtCreate= DateTime.Now
+                        },
+                        new SysRes
+                        {
+                            Id=2,
+                            ResName="resName3",
+                            GmtCreate= DateTime.Now
+                        },
+                        new SysRes
+                        {
+                            Id=3,
+                            ResName="resName中文",
+                            GmtCreate= DateTime.Now
+                        }
+                    );
+                    context.SaveChanges();
             }
         }
     }

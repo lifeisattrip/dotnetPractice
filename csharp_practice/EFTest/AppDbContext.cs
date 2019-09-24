@@ -33,7 +33,9 @@ namespace csharp_practice.EFTest
                 var loggerFactory = new LoggerFactory();
                 loggerFactory.AddProvider(new EFLoggerProvider());
                 optionsBuilder
-                    .UseLoggerFactory(loggerFactory).UseSqlite(@"Data Source=E:\CSharpTestDB.sqlite");
+                    .UseLoggerFactory(loggerFactory)
+                    .UseSqlServer("Server=tcp:codehellovm1.database.chinacloudapi.cn,1433;Initial Catalog=testdb;Persist Security Info=False;User ID=kevin;Password=2wsx!QAZ;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                    //.UseSqlite(@"Data Source=E:\CSharpTestDB.sqlite");
 //                    .UseMySQL(
 //                        "server=172.16.0.183;userid=root;pwd=xianwei;port=3306;database=testef;charset=utf8;sslmode=None"
 //                        "server=127.0.0.1;userid=root;pwd=123456;port=3306;database=testef;charset=utf8;sslmode=None"

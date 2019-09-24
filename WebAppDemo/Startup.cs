@@ -38,7 +38,8 @@ namespace WebAppDemo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDbContext<AppDbContext>(opt =>
-                    opt.UseSqlite(Configuration.GetConnectionString("SQLite"))
+                    opt.UseSqlServer(Configuration.GetConnectionString("AzureSQL"))
+                    //opt.UseSqlite(Configuration.GetConnectionString("SQLite"))
 //                opt.UseMySQL(Configuration.GetConnectionString("Database"))
             );
 
