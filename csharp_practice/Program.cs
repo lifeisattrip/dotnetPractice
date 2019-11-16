@@ -149,19 +149,21 @@ namespace csharp_practice
 
         private static void Main(string[] args)
         {
-//            var program = new Program();
-//            program.TestEssentialCSharp();
-//
-//            var fileTest = new FileTest();
-//
-//            EfTester efTester = new EfTester();
-//            efTester.TestThisFeature();
-//
-//            var serilogTest = new SerilogTest();
-//            serilogTest.TestThisFeature();
+            //            var program = new Program();
+            //            program.TestEssentialCSharp();
+            //
+            //            var fileTest = new FileTest();
+            //
+            //            EfTester efTester = new EfTester();
+            //            efTester.TestThisFeature();
+            //
+            //            var serilogTest = new SerilogTest();
+            //            serilogTest.TestThisFeature();
 
-            var normalGrammar = new NormalGrammar();
-            normalGrammar.TestThisFeature();
+            //var normalGrammar = new NormalGrammar();
+            //normalGrammar.TestThisFeature();
+            var sysopTester = new SysOpTester();
+            sysopTester.TestThisFeature();
         }
     }
 }
