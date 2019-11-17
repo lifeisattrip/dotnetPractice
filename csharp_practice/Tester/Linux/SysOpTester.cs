@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
+using csharp_practice.EFTest.Linux;
 
 namespace csharp_practice.EFTest
 {
@@ -27,6 +29,7 @@ namespace csharp_practice.EFTest
                     {
                         sftp.UploadFile(file, remoteFileName);
                     }
+
                     sftp.Disconnect();
                     Console.WriteLine("上传文件成功,文件路径：" + localFileName);
                     return 0;
@@ -36,15 +39,14 @@ namespace csharp_practice.EFTest
             {
                 Console.WriteLine("上传失败，原因：" + ex.Message);
                 return -2;
-
             }
         }
+
         void TestSSHCommand()
         {
-
             //连接信息
             ConnectionInfo conInfo = new ConnectionInfo(_host, _port, _username,
-                new AuthenticationMethod[] { new PasswordAuthenticationMethod(_username, _password) });
+                new AuthenticationMethod[] {new PasswordAuthenticationMethod(_username, _password)});
 
             //SSH对象
             SshClient sshClient = new SshClient(conInfo);
@@ -62,6 +64,7 @@ namespace csharp_practice.EFTest
                 {
                     break;
                 }
+
                 if (string.IsNullOrWhiteSpace(line))
                 {
                     continue;
@@ -77,12 +80,14 @@ namespace csharp_practice.EFTest
                     Console.WriteLine(sshCmd.Result);
                 }
             }
+
             sshClient.Disconnect();
         }
+
         public override void TestThisFeature()
         {
             UploadFtp(@"D:\1.txt", "/opt/test/2.txt", _host, _port, _username, _password);
-            //TestSSHCommand();
+            TestSSHCommand();
         }
     }
 }
