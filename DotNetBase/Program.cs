@@ -160,10 +160,10 @@ namespace csharp_practice
             //            var serilogTest = new SerilogTest();
             //            serilogTest.TestThisFeature();
 
-            //var normalGrammar = new NormalGrammar();
-            //normalGrammar.TestThisFeature();
-            var sysopTester = new SysOpTester();
-            sysopTester.TestThisFeature();
+            var normalGrammar = new NormalGrammar();
+            normalGrammar.TestThisFeature();
+//            var sysopTester = new SysOpTester();
+//          sysopTester.TestThisFeature();
         }
     }
 }

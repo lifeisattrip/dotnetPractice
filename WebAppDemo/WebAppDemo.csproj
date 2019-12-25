@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\csharp_practice\csharp_practice.csproj" />
+      <ProjectReference Include="..\DotNetBase\DotNetBase.csproj" />
     </ItemGroup>
 
 </Project>

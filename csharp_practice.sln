@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp_practice", "csharp_practice\csharp_practice.csproj", "{520D97B8-4F4A-4F8F-8C00-445DA26309BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBase", "DotNetBase\DotNetBase.csproj", "{520D97B8-4F4A-4F8F-8C00-445DA26309BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppDemo", "WebAppDemo\WebAppDemo.csproj", "{2757B71C-889F-4584-9D16-FC7F53129A7C}"
 EndProject

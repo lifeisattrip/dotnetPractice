@@ -179,7 +179,7 @@ namespace csharp_practice.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("csharp_practice.EFTest.SysConfig", b =>
+            modelBuilder.Entity("DotNetBase.EFTest.SysConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -205,7 +205,7 @@ namespace csharp_practice.Migrations
                     b.ToTable("SysConfigs");
                 });
 
-            modelBuilder.Entity("csharp_practice.EFTest.SysRes", b =>
+            modelBuilder.Entity("DotNetBase.EFTest.SysRes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -219,7 +219,7 @@ namespace csharp_practice.Migrations
                     b.ToTable("SysRes");
                 });
 
-            modelBuilder.Entity("csharp_practice.EFTest.SysRole", b =>
+            modelBuilder.Entity("DotNetBase.EFTest.SysRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -233,7 +233,7 @@ namespace csharp_practice.Migrations
                     b.ToTable("SysRoles");
                 });
 
-            modelBuilder.Entity("csharp_practice.EFTest.SysRoleRes", b =>
+            modelBuilder.Entity("DotNetBase.EFTest.SysRoleRes", b =>
                 {
                     b.Property<int>("ResourceId");
 
@@ -246,7 +246,7 @@ namespace csharp_practice.Migrations
                     b.ToTable("SysRoleRes");
                 });
 
-            modelBuilder.Entity("csharp_practice.EFTest.SysUser", b =>
+            modelBuilder.Entity("DotNetBase.EFTest.SysUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -313,14 +313,14 @@ namespace csharp_practice.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("csharp_practice.EFTest.SysRoleRes", b =>
+            modelBuilder.Entity("DotNetBase.EFTest.SysRoleRes", b =>
                 {
-                    b.HasOne("csharp_practice.EFTest.SysRes", "Res")
+                    b.HasOne("DotNetBase.EFTest.SysRes", "Res")
                         .WithMany("RoleResource")
                         .HasForeignKey("ResourceId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("csharp_practice.EFTest.SysRole", "Role")
+                    b.HasOne("DotNetBase.EFTest.SysRole", "Role")
                         .WithMany("RoleResource")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);

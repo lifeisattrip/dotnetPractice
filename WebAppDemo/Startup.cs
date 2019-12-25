@@ -44,9 +44,6 @@ namespace WebAppDemo
             );
 
 
-            services.AddDefaultIdentity<MyIdentityUser>()
-                .AddEntityFrameworkStores<AppDbContext>();
-
             services.AddMvc(
                 options =>
                 {
@@ -71,7 +68,6 @@ namespace WebAppDemo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
