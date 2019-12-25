@@ -4,7 +4,7 @@ using System.Text;
 
 namespace csharp_practice
 {
-    public sealed class MyAttributeTest: System.Attribute
+    public sealed class MyAttributeTest : System.Attribute
     {
         public MyAttributeTest(string desc, string ver)
         {
